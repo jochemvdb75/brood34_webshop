@@ -1,0 +1,111 @@
+<mvc:View
+	controllerName="ui5.walkthrough.controller.ProductPanel"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+>
+	<Panel id="productDetailsPanel" headerText="{i18n>productDetailsPanelHeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<HBox>
+			<VBox fitContainer="true" width="50%">
+				<List
+					id="productDetailsList"
+					class="sapUiResponsiveMargin"
+					headerText="Weekaanbod {broodaanbod>/bakdatum}"
+					width="auto"
+					items="{broodaanbod>/items/}"
+				>
+				<items>
+					<StandardListItem
+					title="{broodaanbod>broodnaam}"
+					type="{= ${broodaanbod>counter} > 0 ? 'Active' : 'Inactive'}"
+					description="{broodaanbod>broodprijs} EUR"
+					icon="sap-icon://favorite"
+					activeIcon="sap-icon://add"
+					iconInset="false"
+					info="{broodaanbod>Status}"
+					infoState="{
+						path: 'broodaanbod>Status',
+						formatter: '.formatter.status'
+					}"
+					infoStateInverted="true"
+					counter="{
+						path: 'broodaanbod>counter',
+						formatter: '.formatter.stockcounter'
+					}"
+					tooltip="{broodaanbod>broodomschrijving}"
+					press="onProductSelect"
+					>
+					<customData>
+						<core:CustomData key="Name" value="{broodaanbod>broodprijs}"/>
+						<core:CustomData key="City" value="{broodaanbod>broodprijs}"/>
+					</customData>
+				</StandardListItem>
+				</items>
+				</List>
+			</VBox>
+		<VBox>
+			<form:SimpleForm 
+				id="productDetailsForm"
+				editable="true"
+				layout="ResponsiveGridLayout"
+				title=""
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="12"
+				labelSpanS="12"
+				adjustLabelSpan="false"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				columnsXL="2"
+				columnsL="2"
+				columnsM="2"
+				singleContainerFullSize="false" >
+			<Input id="productOfferDate" visible="false" value="{broodaanbod>bakdatum}"/>
+			<Input id="productDetailsId" visible="false" value="{broodaanbod>broodnummer}"/>
+			<Input 
+				id="productOfferId" 
+				visible="false"
+			    type="Number"
+				enabled="false" 
+				editable = "false"
+				valueStateText="Maak selectie"
+				value="{
+				  path: 'broodaanbod>broodaanbodid',
+                  type: 'sap.ui.model.type.Integer',
+                  constraints : {
+				   	minLength: 1,
+                    minimum: 1
+				  }
+               	}"
+			/>
+			<Label text="{i18n>ProductName}"/>
+			<Input enabled="false" id="productDetailsName" value="{broodaanbod>broodnaam}"/>
+			<Label text="{i18n>Price}"/>
+			<Input enabled="false" id="productDetailsPrice" value="{broodaanbod>broodprijs}"/>
+			<Label text="{i18n>Quantity}"/>
+			<StepInput
+				id="productDetailsQuantity"
+				value="{/number}"
+				min="1"
+				max="99"
+				step="1"
+				change="onChange"
+			/>
+			<Label text="{i18n>Cut}"/>
+			<CheckBox enabled="true" id="productDetailsCut" text="{broodaanbod>gesneden}" selected="false" />
+			<Button
+				id="AddBasketButton"
+				icon="sap-icon://cart-3"
+				text="{i18n>AddBasketButton}"
+				press="onAddtoBasket"
+				class="sapUiSmallMarginEnd"
+			/>
+		</form:SimpleForm>
+		</VBox>
+		</HBox>
+	</Panel>
+</mvc:View>

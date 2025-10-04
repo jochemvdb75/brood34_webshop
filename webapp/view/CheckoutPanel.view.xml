@@ -1,0 +1,123 @@
+<mvc:View
+	controllerName="ui5.walkthrough.controller.CheckoutPanel"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+	<Panel id="checkoutPanel" headerText="{i18n>checkoutPanelHeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<form:SimpleForm id="checkoutForm"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title=""
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="12"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="false" >
+					<form:content>
+						<core:Title text="{i18n>CustData}" />
+						<Label text="{i18n>CustDataName}" />
+						<Input
+							id="lname"
+							class="sapUiSmallMarginBottom"
+							placeholder="{i18n>PlaceHolderName}"
+							valueStateText="Name must not be empty. Maximum 10 characters."
+							value="{
+								path : '/lname',
+								type : 'sap.ui.model.type.String',
+								constraints : {
+									minLength: 1,
+									maxLength: 30
+								}
+							}"
+							change= ".onNameChange" 
+						/>
+						<Input
+							id="fname"
+							class="sapUiSmallMarginBottom"
+							placeholder="{i18n>PlaceHolderFName}"
+							valueStateText="Name must not be empty. Maximum 10 characters."
+							value="{
+								path : '/fname',
+								type : 'sap.ui.model.type.String',
+								constraints : {
+									minLength: 1,
+									maxLength: 30
+								}
+							}"
+							change= ".onNameChange" 
+						>
+							<layoutData>
+								<l:GridData span="XL2 L3 M4 S4" />
+							</layoutData>
+						</Input>
+						<Label text="{i18n>CustDataEmail}" />
+						<Input
+							id="email"
+							class="sapUiSmallMarginBottom"
+							type="Email"
+							placeholder="{i18n>PlaceHolderEmail}"
+							valueStateText="E-mail must be a valid email address."
+							value="{
+								path: '/email',
+								type: '.customEMailType'
+							}" 
+						/>
+						<core:Title text="{i18n>OrderData}" />
+						<Label text="{i18n>Carrier}" />
+						<ComboBox
+							id="carrier"
+							selectedKey="1"
+							items="{carriers>/}">
+							<core:Item key="{carriers>carrierid}" text="{carriers>naam} ({carriers>beschrijving})" />
+						</ComboBox>
+						<Label text="{i18n>Payment}" />
+						<ComboBox
+							id="payment"
+							selectedKey="1"
+							items="{betaalmethodes>/}">
+							<core:Item key="{betaalmethodes>betaalmethodeid}" text="{betaalmethodes>naam} ({betaalmethodes>beschrijving})" />
+						</ComboBox>
+						<core:Title text="{i18n>SummaryData}" />
+						<Label text="{i18n>ItemCount}" />
+						<Input value="{Mand>/count}" editable="false" />
+						<Label text="{i18n>Sum}" />
+						<Input value="{Mand>/sum}" editable="false" />
+						<Label text="{i18n>ToPay}" />
+						<Input value="{Mand>/sum}" editable="false" />
+						<core:Title text="{i18n>OrderRemark}" />
+						<TextArea 
+							id="remark" 
+							placeholder="{i18n>Message}" 
+							rows="8"
+							maxLength="50" />
+				</form:content>
+			</form:SimpleForm>
+			</VBox>
+			<FlexBox height="100px" alignItems="Start" justifyContent="End">
+				<Button
+					id="OrderButton"
+					icon="sap-icon://cart-approval"
+					width="200px"
+					text="{i18n>OrderButtonText}"
+					press="onCheckout"
+					class="sapUiSmallMarginEnd"
+				/>
+			</FlexBox>
+		</content>
+	</Panel>
+</mvc:View>

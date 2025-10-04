@@ -1,0 +1,20 @@
+{
+	"Products": [
+		{
+			"ProductId": "201",
+			"ProductName": "Wit huisbrood 400g",
+			"Quantity": 1,
+			"Price": 3,
+			"Category": "Gistbrood",
+			"Status": "A"
+		},
+		{
+			"ProductId": "203",
+			"ProductName": "Bruin huisbrood 400g",
+			"Quantity": 1,
+			"Price": 3,
+            "Category": "Gistbrood",
+			"Status": "A"
+		}
+	]
+}

@@ -1,0 +1,76 @@
+<mvc:View
+	controllerName="ui5.walkthrough.controller.MandPanel"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+>
+	<Panel id="mandPanel" headerText="{i18n>mandPanelHeaderText}" class="sapUiResponsiveMargin" width="auto">
+		<content>
+			<HBox>
+				<Table id="idProductsTable"
+					inset="false"
+					alternateRowColors="true"
+					noData="{i18n>noData}"
+					items="{
+						path: 'Mand>/items/',
+						sorter: {
+							path: 'Name'
+						}
+					}">
+					<columns>
+						<Column
+							width="12em">
+							<Text text="Broodnaam" />
+						</Column>
+						<Column
+							width="12em">
+							<Text text="Gesneden" />
+						</Column>
+						<Column
+							width="12em">
+							<Text text="Aantal" />
+						</Column>
+						<Column
+							width="12em">
+							<Text text="Prijs" />
+						</Column>
+						<Column
+							width="12em">
+							<Text text="" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle">
+							<cells>
+								<Text
+									text="{Mand>broodnaam}" />
+								<Text
+									text="{
+										path: 'Mand>gesneden',
+										formatter: '.formatter.slicing'
+									}" 
+								/>
+								<Text
+									text="{Mand>hoeveelheid}" />
+								<ObjectNumber
+									number="{
+									parts:[{path:'Mand>broodprijs'},{path:'CurrencyCode'}],
+									type: 'sap.ui.model.type.Currency',
+									formatOptions: {showMeasure: false}
+									}"
+									unit="EUR" />
+								<ObjectStatus 
+									active="true"
+									text="delete" 
+									icon="sap-icon://delete"
+									press="OnDelete" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</HBox>
+		</content>
+	</Panel>
+</mvc:View>

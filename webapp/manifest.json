@@ -1,0 +1,84 @@
+{
+	"_version": "1.58.0",
+	"sap.app": {
+		"id": "ui5.walkthrough",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			],
+			"fallbackLocale": ""
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"type": "application",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.108.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "ui5.walkthrough.i18n.i18n",
+					"supportedLocales": [
+						""
+					],
+					"fallbackLocale": ""
+				}
+			},
+			"Mand": {
+				"type": "sap.ui.model.json.JSONModel"
+			},
+			"broodaanbod": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "https://www.brood34.be/data/getdata.php?entity=broodaanbod",
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"carriers": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "https://www.brood34.be/data/getdata.php?entity=carriers",
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"betaalmethodes": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "https://www.brood34.be/data/getdata.php?entity=betaalmethodes",
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			}
+		},
+		"rootView": {
+			"viewName": "ui5.walkthrough.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		}
+	}
+}
